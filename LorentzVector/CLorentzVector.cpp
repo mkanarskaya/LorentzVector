@@ -43,35 +43,38 @@ void LorentzVector:: read(){
 	std::cout << "Input t:"; std::cin >> t;
 
 }
-void LorentzVector::print() {
+void LorentzVector::print() const {
 	std::cout << "Lorenz vector: x =" << this->x << ", y = " << this->y << ", z = " << this->z << ", t = " << this->t << "\n";
 }
 
-LorentzVector LorentzVector::plus(const LorentzVector & rhs) {
+LorentzVector LorentzVector::plus(const LorentzVector & rhs) const{
 	LorentzVector result(this->x + rhs.x, this->y + rhs.y, this->z + rhs.z, this->t + rhs.t);
 	return result;
 }
 
-LorentzVector LorentzVector::minus(const LorentzVector & rhs) {
+LorentzVector LorentzVector::minus(const LorentzVector & rhs) const{
 	LorentzVector result(this->x - rhs.x, this->y - rhs.y, this->z - rhs.z, this->t - rhs.t);
 	return result;
 }
 
-LorentzVector LorentzVector::mult(const LorentzVector & rhs) {
+LorentzVector LorentzVector::mult(const LorentzVector & rhs) const{
 	LorentzVector result(this->x * rhs.x, this->y * rhs.y, this->z * rhs.z, this->t * rhs.t);
 	return result;
 }
 
-LorentzVector LorentzVector::multscalar(double scalar) {
+LorentzVector LorentzVector::multscalar(double scalar) const{
 	LorentzVector result(this->x * scalar, this->y * scalar, this->z * scalar, this->t * scalar);
 	return result;
 }
 
-double LorentzVector::norm() {
-	return sqrt(this->x*this->x + this->y * this->y + this->z * this->z + this->t * this->t);
+double LorentzVector::norm() const{
+	return (this->x*this->x + this->y * this->y + this->z * this->z - this->t * this->t);
 }
 
-LorentzVector LorentzVector::trans(double betta) {
-	LorentzVector result((this->x - betta * t) / sqrt(1 - betta * betta), this->y, this->z, (this->t - betta * x) / sqrt(1 - betta * betta));
-	return result;
+LorentzVector LorentzVector::trans(double betta) const {
+	if (abs(betta) >= 1) return *this;
+	else {
+		LorentzVector result((x - betta * t) / sqrt(1 - betta * betta), y, z, (t - betta * x) / sqrt(1 - betta * betta));
+		return result;
+	}
 }

@@ -26,10 +26,20 @@ int main()
 	c = a.multscalar(scalar);
 	std::cout << "a*" << scalar << ": \n";
 	c.print();
+	std::cout << "Norma a: ";
+	double norma;
+	norma = a.norm();
+	std::cout << norma << "\n";
 	double betta;
 	std::cout << "Input betta value:"; std::cin >> betta;
 	c = a.trans(betta);
-	std::cout << "new: \n";
-	c.print();
+	if (abs(betta) >= 1) {
+		std::cout << "betta is more 1, error \n";
+		c.print();
+	}
+	else {
+		std::cout << "new: \n";
+		c.print();
+	}
 }
 

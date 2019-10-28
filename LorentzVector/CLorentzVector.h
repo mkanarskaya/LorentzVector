@@ -17,12 +17,12 @@ public:
 	void set_lv(double, double, double, double);
 	
 	void read();
-	void print();
+	void print() const;
 	
-	LorentzVector plus(const LorentzVector &);
-	LorentzVector minus(const LorentzVector &);
-	LorentzVector mult(const LorentzVector &);
-	LorentzVector multscalar(double);
-	LorentzVector trans(double);
-	double norm();
+	LorentzVector plus(const LorentzVector &) const;
+	LorentzVector minus(const LorentzVector &) const;
+	LorentzVector mult(const LorentzVector &) const;
+	LorentzVector multscalar(double) const;
+	LorentzVector trans(double) const;
+	double norm() const;
 };
